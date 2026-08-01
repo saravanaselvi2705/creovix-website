@@ -117,45 +117,45 @@ export function BusinessSolutions() {
         </div>
 
         {/* Carousel Slider */}
-/*<SectionCarousel autoplayDelay={5000}>
-  {solutions.map((item) => {
-    const Icon = item.icon;
-    return (
-      <div
-        key={item.id}
-        className="group relative h-full rounded-2xl border border-white/10 bg-[#111116] p-7 transition-all duration-300 hover:-translate-y-1 hover:border-purple-500/40 hover:shadow-xl hover:shadow-purple-950/20 flex flex-col justify-between"
-      >
-        <div className="space-y-4">
-          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-purple-950/40 border border-purple-500/20 text-purple-400 group-hover:scale-110 group-hover:bg-purple-600 group-hover:text-white transition-all duration-300">
-            <Icon className="h-6 w-6" />
-          </div>
+        <SectionCarousel autoplayDelay={5000}>
+          {solutions.map((item) => {
+            const Icon = item.icon;
+            return (
+              <div
+                key={item.id}
+                className="group relative h-full rounded-2xl border border-white/10 bg-[#111116] p-7 transition-all duration-300 hover:-translate-y-1 hover:border-purple-500/40 hover:shadow-xl hover:shadow-purple-950/20 flex flex-col justify-between"
+              >
+                <div className="space-y-4">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-purple-950/40 border border-purple-500/20 text-purple-400 group-hover:scale-110 group-hover:bg-purple-600 group-hover:text-white transition-all duration-300">
+                    <Icon className="h-6 w-6" />
+                  </div>
 
-          <h3 className="font-heading text-lg font-bold text-white group-hover:text-purple-300 transition-colors">
-            {item.title}
-          </h3>
+                  <h3 className="font-heading text-lg font-bold text-white group-hover:text-purple-300 transition-colors">
+                    {item.title}
+                  </h3>
 
-          <p className="text-xs sm:text-sm text-zinc-400 font-light leading-relaxed">
-            {item.description}
-          </p>
-        </div>
+                  <p className="text-xs sm:text-sm text-zinc-400 font-light leading-relaxed">
+                    {item.description}
+                  </p>
+                </div>
 
-        <div className="pt-6 mt-4 border-t border-white/5 flex items-center justify-between">
-          <a
-            href="#contact"
-            className="inline-flex items-center gap-1.5 text-xs font-semibold text-purple-400 group-hover:text-white transition-colors"
-          >
-            <span>Learn More</span>
-            <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-1 transition-transform" />
-          </a>
-          <span className="text-[10px] uppercase font-mono text-zinc-600 group-hover:text-purple-400/60 transition-colors">
-            Custom Build
-          </span>
-        </div>
+                <div className="pt-6 mt-4 border-t border-white/5 flex items-center justify-between">
+                  <a
+                    href="#contact"
+                    className="inline-flex items-center gap-1.5 text-xs font-semibold text-purple-400 group-hover:text-white transition-colors"
+                  >
+                    <span>Learn More</span>
+                    <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-1 transition-transform" />
+                  </a>
+                  <span className="text-[10px] uppercase font-mono text-zinc-600 group-hover:text-purple-400/60 transition-colors">
+                    Custom Build
+                  </span>
+                </div>
+              </div>
+            );
+          })}
+        </SectionCarousel>
       </div>
-    );
-  })}
-</SectionCarousel>
-</div>
-</section>
-);
+    </section>
+  );
 }
