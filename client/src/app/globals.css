@@ -86,3 +86,16 @@
   border: 1px solid rgba(139, 92, 246, 0.25);
   color: #c4b5fd;
 }
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 35s linear infinite;
+}
