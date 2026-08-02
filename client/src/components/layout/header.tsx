@@ -37,25 +37,25 @@ export function Header() {
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 lg:px-12">
         {/* Brand Logo & Name */}
         <a href="#home" className="flex items-center gap-3 group">
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#121217] p-1 border border-white/10 group-hover:border-purple-500/50 transition-all overflow-hidden">
+          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#121217] p-1 border border-white/10 group-hover:border-purple-500/50 transition-all overflow-hidden">
             <Image
               src="/logo.png"
               alt="Creovix Stack Logo"
-              width={36}
-              height={36}
+              width={32}
+              height={32}
               className="object-contain filter drop-shadow"
               priority
             />
           </div>
           <div className="flex flex-col">
             <span className="font-heading text-lg font-bold tracking-tight text-white group-hover:text-purple-300 transition-colors">
-              Creovix<span className="text-purple-400">.Stack</span>
+              Creovix<span className="text-purple-400"> Stack</span>
             </span>
           </div>
         </a>
 
         {/* Desktop Nav Links */}
-        <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-zinc-300">
+        <nav className="hidden md:flex items-center gap-7 text-xs sm:text-sm font-medium text-zinc-300">
           {navItems.map((item) => (
             <a
               key={item.name}
@@ -91,11 +91,9 @@ export function Header() {
             <Instagram className="h-4 w-4" />
           </a>
 
-
-
           <a
             href="#contact"
-            className="inline-flex items-center gap-2 rounded-lg bg-purple-600 px-4 py-2 text-xs font-semibold text-white hover:bg-purple-500 transition-all shadow-sm shadow-purple-900/30"
+            className="inline-flex items-center gap-2 rounded-full bg-purple-600 px-5 py-2 text-xs font-semibold text-white hover:bg-purple-500 transition-all shadow-md shadow-purple-900/40 hover:shadow-purple-700/50"
           >
             Get Free Consultation
             <ArrowRight className="h-3.5 w-3.5" />
