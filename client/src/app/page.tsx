@@ -77,14 +77,14 @@ export default function Home() {
           id="home"
           className="relative min-h-[90vh] sm:min-h-screen flex items-center justify-center overflow-hidden border-b border-white/5"
         >
-          {/* Background Slideshow with portfolio screenshots */}
+          {/* Background Image */}
           <HeroBackground />
 
-          {/* Dark Overlay */}
-          <div className="absolute inset-0 bg-black/75 z-10" />
+          {/* Subtle Dark & Vignette Overlay */}
+          <div className="absolute inset-0 bg-black/30 z-10" />
 
-          {/* Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-[#09090b]/70 to-[#09090b] z-10" />
+          {/* Gradient Overlay for bottom transition */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-[#09090b] z-10" />
 
           {/* Hero Content */}
           <div className="relative z-20 mx-auto max-w-5xl px-6 py-20 lg:px-12 text-center space-y-8">
