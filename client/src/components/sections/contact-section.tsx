@@ -1,7 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import { Mail, Instagram, MapPin, Send, CheckCircle2, Clock, ShieldCheck, Linkedin } from "lucide-react";
+import { Mail, Instagram, Send, CheckCircle2, Clock, ShieldCheck, Linkedin } from "lucide-react";
+
 import { WhatsAppIcon } from "@/components/ui/whatsapp-icon";
 
 export function ContactSection() {

@@ -16,9 +16,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Creovix Stack | Premium Custom Web Development & Software Testing Agency",
-  description: "We build fast, bespoke Next.js & MERN web applications, premium custom WordPress sites, automated software testing pipelines, and data-driven local SEO campaigns.",
-  keywords: ["Next.js 15", "MERN Stack", "Custom Web Development", "Software Testing", "Local SEO", "WordPress Agency"],
+  title: "Creovix Stack | Full-Stack Development & Digital Solutions",
+  description: "Creovix Stack builds modern websites, SaaS platforms, CRM systems, business applications, and custom digital solutions using modern full-stack technologies.",
+  keywords: ["Creovix Stack", "Full-Stack Development", "SaaS Platforms", "CRM Systems", "React", "TypeScript", "Node.js", "Next.js", "MERN Stack", "Digital Solutions"],
 };
 
 export default function RootLayout({

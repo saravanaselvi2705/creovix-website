@@ -4,10 +4,12 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { Menu, X, Instagram, ArrowRight } from "lucide-react";
 import { WhatsAppIcon } from "@/components/ui/whatsapp-icon";
+import { useContactModal } from "@/components/ui/contact-modal";
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { openModal } = useContactModal();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -19,7 +21,8 @@ export function Header() {
 
   const navItems = [
     { name: "Home", href: "#home" },
-    { name: "What We Build", href: "#what-we-build" },
+    { name: "Who We Are", href: "#who-we-are" },
+    { name: "Featured Projects", href: "#featured-projects" },
     { name: "StackPilot", href: "#stackpilot" },
     { name: "Industries", href: "#industries" },
     { name: "Why Us", href: "#why-us" },
@@ -29,10 +32,11 @@ export function Header() {
 
   return (
     <header
-      className={`sticky top-0 z-50 w-full transition-all duration-200 ${scrolled
+      className={`sticky top-0 z-50 w-full transition-all duration-200 ${
+        scrolled
           ? "border-b border-white/10 bg-[#09090b]/90 backdrop-blur-md py-3"
           : "bg-[#09090b] py-4 border-b border-white/5"
-        }`}
+      }`}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 lg:px-12">
         {/* Brand Logo & Name */}
@@ -54,15 +58,16 @@ export function Header() {
           </div>
         </a>
 
-        {/* Desktop Nav Links */}
+        {/* Desktop Nav Links with subtle hover underline */}
         <nav className="hidden md:flex items-center gap-7 text-xs sm:text-sm font-medium text-zinc-300">
           {navItems.map((item) => (
             <a
               key={item.name}
               href={item.href}
-              className="hover:text-white transition-colors"
+              className="relative py-1 hover:text-white transition-colors group"
             >
-              {item.name}
+              <span>{item.name}</span>
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-purple-500 transition-all duration-300 group-hover:w-full rounded-full" />
             </a>
           ))}
         </nav>
@@ -91,13 +96,13 @@ export function Header() {
             <Instagram className="h-4 w-4" />
           </a>
 
-          <a
-            href="#contact"
+          <button
+            onClick={() => openModal("Book Discovery Call")}
             className="inline-flex items-center gap-2 rounded-full bg-purple-600 px-5 py-2 text-xs font-semibold text-white hover:bg-purple-500 transition-all shadow-md shadow-purple-900/40 hover:shadow-purple-700/50"
           >
-            Get Free Consultation
+            <span>Get Free Consultation</span>
             <ArrowRight className="h-3.5 w-3.5" />
-          </a>
+          </button>
         </div>
 
         {/* Mobile Hamburger Toggle */}
@@ -147,16 +152,19 @@ export function Header() {
               <span>@creovix.stack</span>
             </a>
 
-            <a
-              href="#contact"
-              onClick={() => setIsOpen(false)}
+            <button
+              onClick={() => {
+                setIsOpen(false);
+                openModal("Get Free Consultation");
+              }}
               className="inline-flex items-center justify-center gap-2 rounded-lg bg-purple-600 px-4 py-2.5 text-xs font-semibold text-white hover:bg-purple-500 transition-all"
             >
               Get Free Consultation
-            </a>
+            </button>
           </div>
         </div>
       )}
     </header>
   );
 }
+

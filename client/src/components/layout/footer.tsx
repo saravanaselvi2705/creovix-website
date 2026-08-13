@@ -4,8 +4,11 @@ import React from "react";
 import Image from "next/image";
 import { Instagram, Mail, MapPin, Linkedin } from "lucide-react";
 import { WhatsAppIcon } from "@/components/ui/whatsapp-icon";
+import { useContactModal } from "@/components/ui/contact-modal";
 
 export function Footer() {
+  const { openModal } = useContactModal();
+
   return (
     <footer className="border-t border-white/5 bg-[#070709] py-16 text-zinc-400">
       <div className="mx-auto max-w-7xl px-6 lg:px-12">
@@ -48,13 +51,8 @@ export function Footer() {
                 </a>
               </li>
               <li>
-                <a href="#services" className="hover:text-white transition-colors">
-                  Services
-                </a>
-              </li>
-              <li>
-                <a href="#solutions" className="hover:text-white transition-colors">
-                  Solutions
+                <a href="#what-we-build" className="hover:text-white transition-colors">
+                  What We Build
                 </a>
               </li>
               <li>
@@ -63,19 +61,27 @@ export function Footer() {
                 </a>
               </li>
               <li>
+                <a href="#industries" className="hover:text-white transition-colors">
+                  Industries
+                </a>
+              </li>
+              <li>
                 <a href="#why-us" className="hover:text-white transition-colors">
                   Why Us
                 </a>
               </li>
               <li>
-                <a href="#case-stories" className="hover:text-white transition-colors">
-                  Case Studies
+                <a href="#process" className="hover:text-white transition-colors">
+                  Process
                 </a>
               </li>
               <li>
-                <a href="#contact" className="hover:text-white transition-colors">
+                <button
+                  onClick={() => openModal("Contact Us")}
+                  className="hover:text-white transition-colors text-left"
+                >
                   Contact Us
-                </a>
+                </button>
               </li>
             </ul>
           </div>
@@ -87,24 +93,36 @@ export function Footer() {
             </h4>
             <ul className="space-y-2 text-xs">
               <li>
-                <a href="#solutions" className="hover:text-white transition-colors">
+                <button
+                  onClick={() => openModal("Business Websites")}
+                  className="hover:text-white transition-colors text-left"
+                >
                   Business Websites
-                </a>
+                </button>
               </li>
               <li>
-                <a href="#solutions" className="hover:text-white transition-colors">
+                <button
+                  onClick={() => openModal("Custom CRM Software")}
+                  className="hover:text-white transition-colors text-left"
+                >
                   Custom CRM Software
-                </a>
+                </button>
               </li>
               <li>
-                <a href="#solutions" className="hover:text-white transition-colors">
-                  SaaS Platforms
-                </a>
+                <button
+                  onClick={() => openModal("StackPilot Enterprise")}
+                  className="hover:text-white transition-colors text-left"
+                >
+                  StackPilot Enterprise
+                </button>
               </li>
               <li>
-                <a href="#solutions" className="hover:text-white transition-colors">
-                  Executive Dashboards & BI
-                </a>
+                <button
+                  onClick={() => openModal("Custom Software")}
+                  className="hover:text-white transition-colors text-left"
+                >
+                  Custom Software
+                </button>
               </li>
             </ul>
           </div>
@@ -196,3 +214,4 @@ export function Footer() {
     </footer>
   );
 }
+

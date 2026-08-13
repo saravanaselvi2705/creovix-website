@@ -1,115 +1,95 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import {
-  Stethoscope,
-  HardHat,
-  GraduationCap,
-  ShoppingBag,
-  Utensils,
-  Landmark,
-  Plane,
-  Factory,
   Building,
+  Car,
+  ShoppingBag,
   Truck,
+  Scale,
+  Landmark,
+  Smile,
+  Stethoscope,
   Sparkles,
-  ArrowUpRight,
 } from "lucide-react";
 import { motion } from "framer-motion";
 
-interface Industry {
+interface IndustryItem {
   id: string;
-  title: string;
-  icon: React.ElementType;
-  tagline: string;
+  name: string;
   description: string;
+  icon: React.ElementType;
 }
 
-const industries: Industry[] = [
+const targetIndustries: IndustryItem[] = [
   {
-    id: "healthcare",
-    title: "Healthcare & Clinics",
-    icon: Stethoscope,
-    tagline: "EHR & Patient Portals",
-    description: "HIPAA-ready appointment portals, EHR integrations, teleconsultation tools, and automated SMS reminders.",
+    id: "real-estate",
+    name: "Real Estate",
+    description: "Property listings, lead management & agent portals",
+    icon: Building,
   },
   {
-    id: "construction",
-    title: "Construction & Engineering",
-    icon: HardHat,
-    tagline: "Site & Resource Tracking",
-    description: "Project tracking portals, subcontractor management, machinery logs, and site inspection apps.",
-  },
-  {
-    id: "education",
-    title: "Education & EdTech",
-    icon: GraduationCap,
-    tagline: "LMS & Student Portals",
-    description: "Student management systems, online learning platforms, fee collection, and exam management portals.",
+    id: "automobile",
+    name: "Automobile",
+    description: "Dealership management, inventory & service booking",
+    icon: Car,
   },
   {
     id: "retail",
-    title: "Retail & E-Commerce",
+    name: "Retail",
+    description: "Omnichannel e-commerce & inventory automation",
     icon: ShoppingBag,
-    tagline: "Omnichannel Commerce",
-    description: "Omnichannel inventory sync, customer portals, custom checkout workflows, and automated marketing integrations.",
-  },
-  {
-    id: "restaurants",
-    title: "Restaurants & Food Services",
-    icon: Utensils,
-    tagline: "Ordering & KDS Systems",
-    description: "Direct online ordering engines, QR digital menus, kitchen display systems (KDS), and loyalty rewards.",
-  },
-  {
-    id: "finance",
-    title: "Finance & Fintech",
-    icon: Landmark,
-    tagline: "Secure Financial Portals",
-    description: "Loan management tools, investor reporting dashboards, compliance audit trails, and automated accounting.",
-  },
-  {
-    id: "travel",
-    title: "Travel & Hospitality",
-    icon: Plane,
-    tagline: "Booking Engines & Tours",
-    description: "Custom reservation engines, tour package configurators, itinerary planners, and payment portals.",
-  },
-  {
-    id: "manufacturing",
-    title: "Manufacturing & Industrial",
-    icon: Factory,
-    tagline: "Supply Chain & Inventory",
-    description: "Supply chain dashboards, raw material trackers, quality control logs, and automated vendor ordering.",
-  },
-  {
-    id: "realestate",
-    title: "Real Estate & Property",
-    icon: Building,
-    tagline: "Listing Portals & CRM",
-    description: "Property listing portals, virtual tour embeds, tenant portal payments, and automated lead distribution.",
   },
   {
     id: "logistics",
-    title: "Logistics & Fleet",
+    name: "Logistics",
+    description: "Fleet tracking, shipment dispatch & warehouse management",
     icon: Truck,
-    tagline: "Dispatch & Tracking",
-    description: "Real-time dispatch portals, driver mobile apps, consignment tracking links, and digital proof-of-delivery.",
+  },
+  {
+    id: "legal",
+    name: "Legal",
+    description: "Case management, document vault & client billing",
+    icon: Scale,
+  },
+  {
+    id: "finance",
+    name: "Finance",
+    description: "Fintech solutions, accounting & secure customer portals",
+    icon: Landmark,
+  },
+  {
+    id: "dental",
+    name: "Dental",
+    description: "Patient scheduling, EHR & clinic management",
+    icon: Smile,
+  },
+  {
+    id: "healthcare",
+    name: "Healthcare",
+    description: "Telemedicine, clinic software & patient portals",
+    icon: Stethoscope,
   },
 ];
 
 export function IndustriesSection() {
-  // Duplicate array for seamless infinite marquee loop
-  const marqueeItems = [...industries, ...industries];
+  const [isHovered, setIsHovered] = useState(false);
+  // Quadruple items to ensure seamless infinite looping marquee
+  const marqueeTrack = [
+    ...targetIndustries,
+    ...targetIndustries,
+    ...targetIndustries,
+    ...targetIndustries,
+  ];
 
   return (
-    <section id="industries" className="py-24 border-b border-white/5 bg-[#0b0b0f] overflow-hidden">
+    <section id="industries" className="py-20 border-b border-white/5 bg-[#09090b] overflow-hidden">
       <div className="mx-auto max-w-7xl px-6 lg:px-12 mb-12">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4">
           <div className="inline-flex items-center gap-2 rounded-full border border-purple-500/30 bg-purple-950/40 px-3.5 py-1 text-xs text-purple-300 backdrop-blur-md">
             <Sparkles className="h-3.5 w-3.5 text-purple-400" />
-            <span className="font-medium uppercase tracking-wider text-[11px]">Domain Specialization</span>
+            <span className="font-medium uppercase tracking-wider text-[11px]">Domain Expertise</span>
           </div>
 
           <h2 className="font-heading text-3xl sm:text-5xl font-bold text-white tracking-tight">
@@ -117,75 +97,68 @@ export function IndustriesSection() {
           </h2>
 
           <p className="text-xs sm:text-base text-zinc-400 font-light leading-relaxed">
-            We architect bespoke digital products tailored specifically to the operational workflows and compliance requirements of your domain.
+            Tailored digital platforms and enterprise software engineered for leading industry sectors.
           </p>
         </div>
       </div>
 
-      {/* Continuously Moving Horizontal Slider (Infinite Marquee) */}
-      <div className="relative w-full py-4 group">
-        {/* Left & Right Gradient Fades */}
-        <div className="pointer-events-none absolute left-0 top-0 bottom-0 z-10 w-24 bg-gradient-to-r from-[#0b0b0f] via-[#0b0b0f]/80 to-transparent" />
-        <div className="pointer-events-none absolute right-0 top-0 bottom-0 z-10 w-24 bg-gradient-to-l from-[#0b0b0f] via-[#0b0b0f]/80 to-transparent" />
+      {/* CONTINUOUS INFINITE HORIZONTAL MARQUEE (PAUSE ON HOVER) */}
+      <div
+        className="relative w-full overflow-hidden"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
+        {/* Side Gradient Fades */}
+        <div className="pointer-events-none absolute left-0 top-0 bottom-0 z-20 w-24 sm:w-40 bg-gradient-to-r from-[#09090b] via-[#09090b]/80 to-transparent" />
+        <div className="pointer-events-none absolute right-0 top-0 bottom-0 z-20 w-24 sm:w-40 bg-gradient-to-l from-[#09090b] via-[#09090b]/80 to-transparent" />
 
-        {/* Marquee Track */}
-        <motion.div
-          className="flex gap-6 w-max"
-          animate={{ x: ["0%", "-50%"] }}
-          transition={{
-            x: {
-              repeat: Infinity,
-              repeatType: "loop",
-              duration: 35,
-              ease: "linear",
-            },
-          }}
-          whileHover={{ animationPlayState: "paused" }}
-        >
-          {marqueeItems.map((item, idx) => {
-            const Icon = item.icon;
-            return (
-              <div
-                key={`${item.id}-${idx}`}
-                className="w-72 sm:w-80 shrink-0 rounded-2xl border border-white/10 bg-[#111116] p-6 transition-all duration-300 hover:border-purple-500/50 hover:bg-[#15151c] hover:-translate-y-1 hover:shadow-xl hover:shadow-purple-950/20 flex flex-col justify-between"
-              >
-                <div className="space-y-4">
-                  {/* Top Bar with Icon & Tagline */}
-                  <div className="flex items-center justify-between">
-                    <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-purple-950/60 border border-purple-500/30 text-purple-400">
-                      <Icon className="h-5.5 w-5.5" />
+        <div className="flex overflow-hidden py-4">
+          <motion.div
+            className="flex gap-6 w-max shrink-0"
+            animate={{ x: isHovered ? undefined : ["0%", "-25%"] }}
+            transition={{
+              x: {
+                repeat: Infinity,
+                repeatType: "loop",
+                duration: 35,
+                ease: "linear",
+              },
+            }}
+          >
+            {marqueeTrack.map((item, idx) => {
+              const Icon = item.icon;
+              return (
+                <div
+                  key={`${item.id}-${idx}`}
+                  className="group relative flex flex-col justify-between w-64 sm:w-72 shrink-0 rounded-2xl border border-white/10 bg-[#111116] p-6 transition-all duration-300 hover:border-purple-500/60 hover:bg-purple-950/20 hover:-translate-y-1.5 hover:shadow-xl hover:shadow-purple-950/40"
+                >
+                  {/* Soft Purple Glow Highlight on Hover */}
+                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-b from-purple-500/10 via-transparent to-purple-600/10 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
+
+                  <div className="space-y-4 relative z-10">
+                    <div className="flex items-center justify-between">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-purple-950/50 border border-purple-500/30 text-purple-400 group-hover:bg-purple-600 group-hover:text-white transition-all duration-300 shadow-md">
+                        <Icon className="h-6 w-6" />
+                      </div>
+                      <span className="text-[10px] font-mono text-purple-400/80 bg-purple-950/60 px-2 py-0.5 rounded border border-purple-500/20">
+                        Sector
+                      </span>
                     </div>
-                    <span className="text-[10px] font-mono font-medium text-purple-300 bg-purple-950/40 px-2.5 py-1 rounded-full border border-purple-500/20">
-                      {item.tagline}
-                    </span>
-                  </div>
 
-                  {/* Title & Description */}
-                  <div className="space-y-1.5">
-                    <h3 className="font-heading text-base font-bold text-white group-hover:text-purple-300 transition-colors">
-                      {item.title}
-                    </h3>
-                    <p className="text-xs text-zinc-400 font-light leading-relaxed">
-                      {item.description}
-                    </p>
+                    <div>
+                      <h3 className="font-heading text-lg font-bold text-white group-hover:text-purple-300 transition-colors">
+                        {item.name}
+                      </h3>
+                      <p className="text-xs text-zinc-400 font-light leading-relaxed mt-1.5">
+                        {item.description}
+                      </p>
+                    </div>
                   </div>
                 </div>
-
-                {/* Footer Action */}
-                <div className="pt-4 mt-4 border-t border-white/5 flex items-center justify-between">
-                  <a
-                    href="#contact"
-                    className="inline-flex items-center gap-1 text-[11px] font-semibold text-purple-400 hover:text-white transition-colors"
-                  >
-                    <span>Domain Solution</span>
-                    <ArrowUpRight className="h-3 w-3" />
-                  </a>
-                  <span className="text-[9px] font-mono text-zinc-600">Creovix Industry</span>
-                </div>
-              </div>
-            );
-          })}
-        </motion.div>
+              );
+            })}
+          </motion.div>
+        </div>
       </div>
     </section>
   );

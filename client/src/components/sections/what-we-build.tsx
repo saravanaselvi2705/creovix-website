@@ -1,24 +1,18 @@
 "use client";
 
 import React from "react";
-import Image from "next/image";
+
 import {
   Globe,
-  ShoppingCart,
-  Layers,
   Users,
-  Building2,
-  Smartphone,
-  Cpu,
-  UserCheck,
-  ShieldCheck,
-  Package,
-  BarChart3,
-  Code2,
+  Layers,
   ArrowRight,
   Sparkles,
+  TrendingUp,
+  ShieldCheck,
 } from "lucide-react";
 import { SectionCarousel } from "@/components/ui/section-carousel";
+import { useContactModal } from "@/components/ui/contact-modal";
 
 interface BuildItem {
   id: string;
@@ -27,7 +21,7 @@ interface BuildItem {
   description: string;
   icon: React.ElementType;
   badge: string;
-  visualType: "website" | "ecommerce" | "saas" | "crm" | "erp" | "mobile" | "ai" | "hrms" | "portal" | "inventory" | "dashboard" | "custom";
+  visualType: "website" | "crm" | "stackpilot";
 }
 
 const buildItems: BuildItem[] = [
@@ -35,422 +29,235 @@ const buildItems: BuildItem[] = [
     id: "business-websites",
     title: "Business Websites",
     category: "Web Engineering",
-    description: "High-performance, conversion-focused corporate websites built with Next.js 15, tailored SEO, and lightning-fast edge loading.",
+    description: "Premium responsive business websites designed to establish your online presence and convert visitors into customers.",
     icon: Globe,
-    badge: "Fast Delivery",
+    badge: "Conversion Focused",
     visualType: "website",
   },
   {
-    id: "ecommerce-platforms",
-    title: "E-Commerce Platforms",
-    category: "Digital Commerce",
-    description: "Scalable online storefronts with seamless payment gateways, automated inventory sync, and high-conversion checkout flows.",
-    icon: ShoppingCart,
-    badge: "High Conversion",
-    visualType: "ecommerce",
-  },
-  {
-    id: "saas-products",
-    title: "SaaS Products",
-    category: "Cloud Software",
-    description: "Multi-tenant SaaS architectures complete with subscription billing, user role hierarchies, and API rate limiting.",
-    icon: Layers,
-    badge: "Cloud Scalable",
-    visualType: "saas",
-  },
-  {
-    id: "crm-systems",
-    title: "CRM Systems",
+    id: "crm-solutions",
+    title: "CRM Solutions",
     category: "Sales Operations",
-    description: "Custom lead management pipelines, sales team tracking, automated follow-ups, and customer touchpoint history.",
+    description: "Custom CRM platforms for customer management, sales pipelines, invoices, reporting and business operations.",
     icon: Users,
     badge: "Automated Pipeline",
     visualType: "crm",
   },
   {
-    id: "erp-solutions",
-    title: "ERP Solutions",
-    category: "Enterprise Suite",
-    description: "Unified operational software integrating supply chain, financial tracking, department workflows, and central reporting.",
-    icon: Building2,
-    badge: "Unified System",
-    visualType: "erp",
-  },
-  {
-    id: "mobile-apps",
-    title: "Mobile Applications",
-    category: "Cross-Platform",
-    description: "Native-quality iOS and Android applications with offline synchronization, real-time push alerts, and slick UI interaction.",
-    icon: Smartphone,
-    badge: "iOS & Android",
-    visualType: "mobile",
-  },
-  {
-    id: "ai-automation",
-    title: "AI Automation",
-    category: "Intelligent Workflows",
-    description: "Custom AI agents, LLM integrations, document parsing engines, and automated decision workflows tailored to your business.",
-    icon: Cpu,
-    badge: "AI Powered",
-    visualType: "ai",
-  },
-  {
-    id: "hrms",
-    title: "HR Management Systems",
-    category: "Human Capital",
-    description: "Digital employee onboarding, biometric attendance sync, automated payroll generation, and team performance tracking.",
-    icon: UserCheck,
-    badge: "Team Management",
-    visualType: "hrms",
-  },
-  {
-    id: "customer-portals",
-    title: "Customer Portals",
-    category: "Client Experience",
-    description: "Encrypted self-service client portals for document sharing, order status tracking, invoice management, and ticketing.",
-    icon: ShieldCheck,
-    badge: "Secure Vault",
-    visualType: "portal",
-  },
-  {
-    id: "inventory-systems",
-    title: "Inventory Systems",
-    category: "Supply Chain",
-    description: "Real-time multi-warehouse stock monitoring, automated low-stock reorder triggers, and barcode scanner telemetry.",
-    icon: Package,
-    badge: "Real-Time Stock",
-    visualType: "inventory",
-  },
-  {
-    id: "business-dashboards",
-    title: "Business Dashboards",
-    category: "Analytics & Telemetry",
-    description: "Real-time executive KPI dashboards, automated PDF reporting, financial charts, and operational performance widgets.",
-    icon: BarChart3,
-    badge: "Live Telemetry",
-    visualType: "dashboard",
-  },
-  {
-    id: "custom-software",
-    title: "Custom Software",
-    category: "Bespoke Solutions",
-    description: "Bespoke web applications, custom microservices, and specialized internal tools engineered for complex business requirements.",
-    icon: Code2,
-    badge: "Bespoke Architecture",
-    visualType: "custom",
+    id: "stackpilot-enterprise",
+    title: "StackPilot Enterprise",
+    category: "Enterprise Operations",
+    description: "All-in-one enterprise workspace combining CRM, project management, HR, finance, reporting and automation.",
+    icon: Layers,
+    badge: "Flagship Suite",
+    visualType: "stackpilot",
   },
 ];
 
-// Helper visual renderers for real product preview mockups
 function CardVisualPreview({ item }: { item: BuildItem }) {
   return (
-    <div className="relative w-full h-44 rounded-xl overflow-hidden border border-white/10 bg-[#0d0d12] flex flex-col justify-between p-3 group-hover:border-purple-500/30 transition-all">
-      {/* Top Browser Bar */}
-      <div className="flex items-center justify-between pb-2 border-b border-white/5 z-10">
+    <div className="relative h-48 sm:h-52 w-full overflow-hidden rounded-xl border border-white/10 bg-[#0c0c12] p-4 group-hover:border-purple-500/50 transition-all duration-500">
+      {/* Subtle Grid Background */}
+      <div
+        className="absolute inset-0 opacity-15 pointer-events-none"
+        style={{
+          backgroundImage: `radial-gradient(circle at 1px 1px, rgba(255,255,255,0.15) 1px, transparent 0)`,
+          backgroundSize: "16px 16px",
+        }}
+      />
+
+      {/* Ambient Radial Glow */}
+      <div className="absolute -top-12 -right-12 w-40 h-40 bg-purple-600/20 blur-3xl rounded-full pointer-events-none group-hover:bg-purple-500/30 transition-all duration-500" />
+
+      {/* Browser Bar Mockup Header */}
+      <div className="flex items-center justify-between border-b border-white/10 pb-2 mb-3 relative z-10">
         <div className="flex items-center gap-1.5">
-          <span className="h-2 w-2 rounded-full bg-red-500/80" />
-          <span className="h-2 w-2 rounded-full bg-yellow-500/80" />
-          <span className="h-2 w-2 rounded-full bg-green-500/80" />
+          <div className="h-2 w-2 rounded-full bg-red-500/80" />
+          <div className="h-2 w-2 rounded-full bg-yellow-500/80" />
+          <div className="h-2 w-2 rounded-full bg-emerald-500/80" />
+          <span className="ml-2 text-[9px] font-mono text-zinc-400">creovix.com/{item.id}</span>
         </div>
-        <div className="text-[10px] font-mono text-zinc-500 bg-white/5 px-2 py-0.5 rounded border border-white/5">
-          creovix.com/{item.id}
-        </div>
-        <span className="text-[9px] font-semibold text-purple-400 bg-purple-950/60 px-1.5 py-0.5 rounded border border-purple-500/30">
+        <span className="text-[8px] font-mono text-purple-300 bg-purple-950/60 px-2 py-0.5 rounded border border-purple-500/30">
           {item.badge}
         </span>
       </div>
 
-      {/* Visual Content representation based on type */}
-      <div className="relative flex-1 my-2 rounded-lg bg-[#13131a] p-3 overflow-hidden border border-white/5 flex flex-col justify-center">
+      {/* Image / Interactive Visual Preview Container with Hover Zoom */}
+      <div className="relative h-full w-full transform group-hover:scale-105 transition-transform duration-700 ease-out flex flex-col justify-center">
         {item.visualType === "website" && (
-          <div className="space-y-2">
-            <div className="flex items-center justify-between">
-              <div className="h-2 w-1/3 bg-purple-500/60 rounded" />
-              <div className="flex gap-1">
-                <div className="h-2 w-4 bg-white/20 rounded" />
-                <div className="h-2 w-4 bg-white/20 rounded" />
-              </div>
+          <div className="space-y-2.5 relative z-10 bg-[#12121c] p-3 rounded-lg border border-purple-500/20 shadow-md">
+            <div className="flex items-center justify-between text-[10px] text-zinc-200 font-semibold">
+              <span className="flex items-center gap-1">
+                <Globe className="h-3 w-3 text-purple-400" />
+                Corporate Business Website
+              </span>
+              <span className="text-emerald-400 font-mono text-[9px]">99/100 Speed</span>
             </div>
-            <div className="h-6 w-3/4 bg-gradient-to-r from-purple-500/30 to-indigo-500/30 rounded border border-purple-500/20 flex items-center px-2">
-              <span className="text-[9px] font-semibold text-purple-200">High Conversion Hero UI</span>
+            <div className="h-2 bg-purple-500/20 rounded-full w-3/4 overflow-hidden">
+              <div className="h-full bg-gradient-to-r from-purple-500 to-indigo-400 w-full" />
             </div>
             <div className="grid grid-cols-3 gap-1.5 pt-1">
-              <div className="h-4 bg-white/5 rounded" />
-              <div className="h-4 bg-white/5 rounded" />
-              <div className="h-4 bg-purple-600/40 rounded border border-purple-400/30" />
-            </div>
-          </div>
-        )}
-
-        {item.visualType === "ecommerce" && (
-          <div className="space-y-2">
-            <div className="flex items-center justify-between text-[10px] text-zinc-300 font-medium">
-              <span>Checkout Flow</span>
-              <span className="text-emerald-400 font-mono">+$2,450.00</span>
-            </div>
-            <div className="grid grid-cols-3 gap-1.5">
-              <div className="h-9 bg-purple-900/30 rounded border border-purple-500/30 p-1 flex flex-col justify-between">
-                <span className="text-[8px] text-zinc-400">Pro Item</span>
-                <span className="text-[9px] font-bold text-white">$199</span>
+              <div className="bg-white/5 p-1.5 rounded text-[8px] text-zinc-300 text-center border border-white/5">
+                <div className="text-purple-300 font-bold">SEO Ready</div>
+                <div className="text-[7px] text-zinc-400">Schema Meta</div>
               </div>
-              <div className="h-9 bg-white/5 rounded p-1 flex flex-col justify-between">
-                <span className="text-[8px] text-zinc-400">Cart Sync</span>
-                <span className="text-[9px] font-bold text-zinc-300">Success</span>
+              <div className="bg-white/5 p-1.5 rounded text-[8px] text-zinc-300 text-center border border-white/5">
+                <div className="text-emerald-400 font-bold">Responsive</div>
+                <div className="text-[7px] text-zinc-400">Mobile First</div>
               </div>
-              <div className="h-9 bg-emerald-950/40 rounded border border-emerald-500/30 p-1 flex flex-col justify-between">
-                <span className="text-[8px] text-emerald-300">Stripe Live</span>
-                <span className="text-[8px] text-emerald-200">Paid 100%</span>
+              <div className="bg-white/5 p-1.5 rounded text-[8px] text-zinc-300 text-center border border-white/5">
+                <div className="text-purple-300 font-bold">Fast Edge</div>
+                <div className="text-[7px] text-zinc-400">Next.js 15</div>
               </div>
-            </div>
-          </div>
-        )}
-
-        {item.visualType === "saas" && (
-          <div className="space-y-2">
-            <div className="flex justify-between items-center text-[10px] text-purple-300 font-mono">
-              <span>StackPilot SaaS</span>
-              <span className="bg-purple-500/20 px-1.5 py-0.5 rounded text-[8px]">Active Subs</span>
-            </div>
-            <div className="h-8 bg-gradient-to-r from-purple-900/40 via-indigo-900/40 to-[#121218] rounded border border-white/10 p-1.5 flex items-center justify-between">
-              <div className="space-y-0.5">
-                <div className="h-1.5 w-16 bg-purple-300 rounded" />
-                <div className="h-1 w-10 bg-zinc-500 rounded" />
-              </div>
-              <span className="text-[10px] font-bold text-purple-400 font-mono">99.9% Uptime</span>
             </div>
           </div>
         )}
 
         {item.visualType === "crm" && (
-          <div className="space-y-1.5">
-            <div className="text-[10px] font-semibold text-zinc-300 flex items-center justify-between">
-              <span>Lead Pipeline</span>
-              <span className="text-purple-400 text-[9px]">14 Hot Deals</span>
-            </div>
-            <div className="grid grid-cols-3 gap-1">
-              <div className="bg-purple-950/40 border border-purple-500/30 rounded p-1 text-[8px]">
-                <div className="text-zinc-300 font-medium">New Lead</div>
-                <div className="text-purple-400 font-bold">$12,000</div>
-              </div>
-              <div className="bg-indigo-950/40 border border-indigo-500/30 rounded p-1 text-[8px]">
-                <div className="text-zinc-300 font-medium">Proposal</div>
-                <div className="text-indigo-300 font-bold">$35,500</div>
-              </div>
-              <div className="bg-emerald-950/40 border border-emerald-500/30 rounded p-1 text-[8px]">
-                <div className="text-emerald-300 font-medium">Won</div>
-                <div className="text-emerald-400 font-bold">$48,000</div>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {item.visualType === "erp" && (
-          <div className="space-y-2">
-            <div className="flex justify-between items-center text-[10px] text-zinc-300 font-medium">
-              <span>Enterprise Resource Flow</span>
-              <span className="text-purple-400 text-[9px]">Multi-Dept Sync</span>
-            </div>
-            <div className="grid grid-cols-2 gap-1.5">
-              <div className="bg-white/5 border border-white/10 rounded p-1.5 text-[8px]">
-                <span className="text-zinc-400">Finance & Payroll</span>
-                <div className="h-1 w-full bg-purple-500/60 rounded mt-1" />
-              </div>
-              <div className="bg-white/5 border border-white/10 rounded p-1.5 text-[8px]">
-                <span className="text-zinc-400">Supply Chain</span>
-                <div className="h-1 w-full bg-emerald-500/60 rounded mt-1" />
-              </div>
-            </div>
-          </div>
-        )}
-
-        {item.visualType === "mobile" && (
-          <div className="flex items-center justify-center">
-            <div className="w-24 h-16 rounded-lg bg-gradient-to-br from-purple-900/60 to-indigo-950/80 border border-purple-500/30 p-2 flex flex-col justify-between shadow-lg">
-              <div className="flex justify-between items-center">
-                <span className="text-[8px] font-bold text-white">App Store</span>
-                <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-              </div>
-              <div className="text-[9px] font-medium text-purple-200">iOS & Android Ready</div>
-            </div>
-          </div>
-        )}
-
-        {item.visualType === "ai" && (
-          <div className="space-y-1.5">
-            <div className="flex items-center justify-between text-[10px] text-purple-300">
-              <span className="flex items-center gap-1 font-mono">
-                <Sparkles className="h-3 w-3 text-purple-400" />
-                AI Agent Pipeline
+          <div className="space-y-2.5 relative z-10 bg-[#12121c] p-3 rounded-lg border border-purple-500/20 shadow-md">
+            <div className="flex justify-between items-center text-[10px] text-zinc-200 font-semibold">
+              <span className="flex items-center gap-1">
+                <TrendingUp className="h-3 w-3 text-purple-400" />
+                Sales Pipeline & CRM
               </span>
-              <span className="text-emerald-400 text-[8px] font-mono">Active Agent</span>
+              <span className="text-purple-300 font-mono text-[9px]">$148,500 Deals</span>
             </div>
-            <div className="h-7 bg-purple-950/40 rounded border border-purple-500/30 p-1.5 flex items-center justify-between">
-              <span className="text-[9px] text-zinc-200">Automated Data Parsing</span>
-              <span className="text-[8px] bg-purple-600 text-white px-1 rounded">100% LLM</span>
+            <div className="grid grid-cols-3 gap-1.5">
+              <div className="bg-purple-950/50 border border-purple-500/30 p-1.5 rounded text-[8px]">
+                <div className="text-zinc-400">Leads</div>
+                <div className="text-white font-bold">42 Active</div>
+              </div>
+              <div className="bg-purple-950/50 border border-purple-500/30 p-1.5 rounded text-[8px]">
+                <div className="text-zinc-400">Invoices</div>
+                <div className="text-emerald-400 font-bold">Paid</div>
+              </div>
+              <div className="bg-purple-950/50 border border-purple-500/30 p-1.5 rounded text-[8px]">
+                <div className="text-zinc-400">Automation</div>
+                <div className="text-purple-300 font-bold">Active</div>
+              </div>
             </div>
           </div>
         )}
 
-        {item.visualType === "hrms" && (
-          <div className="space-y-1.5">
-            <div className="text-[10px] font-semibold text-zinc-300 flex justify-between">
-              <span>Employee Portal</span>
-              <span className="text-purple-400 text-[9px]">48 Active Staff</span>
+        {item.visualType === "stackpilot" && (
+          <div className="space-y-2.5 relative z-10 bg-[#12121c] p-3 rounded-lg border border-purple-500/20 shadow-md">
+            <div className="flex justify-between items-center text-[10px] text-zinc-200 font-semibold">
+              <span className="flex items-center gap-1">
+                <ShieldCheck className="h-3 w-3 text-purple-400" />
+                StackPilot Enterprise
+              </span>
+              <span className="bg-purple-600 text-white text-[8px] font-mono px-1.5 py-0.5 rounded">All-In-One</span>
             </div>
             <div className="flex gap-2">
-              <div className="flex-1 bg-white/5 rounded p-1 text-[8px]">
-                <div className="text-zinc-400">Attendance</div>
-                <div className="text-emerald-400 font-bold">98.4%</div>
+              <div className="flex-1 bg-white/5 rounded p-1.5 text-[8px] border border-white/5">
+                <div className="text-zinc-400">Projects</div>
+                <div className="text-purple-300 font-bold">18 Sprints</div>
               </div>
-              <div className="flex-1 bg-white/5 rounded p-1 text-[8px]">
-                <div className="text-zinc-400">Payroll</div>
-                <div className="text-purple-300 font-bold">Disbursed</div>
+              <div className="flex-1 bg-white/5 rounded p-1.5 text-[8px] border border-white/5">
+                <div className="text-zinc-400">Finance & HR</div>
+                <div className="text-emerald-400 font-bold">Automated</div>
               </div>
-            </div>
-          </div>
-        )}
-
-        {item.visualType === "portal" && (
-          <div className="space-y-1.5">
-            <div className="flex justify-between items-center text-[10px] text-zinc-300 font-medium">
-              <span>Secure Client Vault</span>
-              <span className="text-emerald-400 text-[8px]">256-bit SSL</span>
-            </div>
-            <div className="bg-purple-950/40 border border-purple-500/30 rounded p-1.5 flex justify-between items-center text-[9px]">
-              <span className="text-purple-200 font-mono">Contract_v2.pdf</span>
-              <span className="bg-purple-600/60 text-white px-1.5 py-0.5 rounded text-[8px]">Verified</span>
-            </div>
-          </div>
-        )}
-
-        {item.visualType === "inventory" && (
-          <div className="space-y-1.5">
-            <div className="flex justify-between text-[10px] text-zinc-300 font-medium">
-              <span>Warehouse Stock</span>
-              <span className="text-purple-400 text-[9px]">Auto Reorder</span>
-            </div>
-            <div className="grid grid-cols-2 gap-1 text-[8px]">
-              <div className="bg-white/5 rounded p-1">
-                <span className="text-zinc-400">Warehouse A</span>
-                <div className="text-white font-bold">1,420 Units</div>
-              </div>
-              <div className="bg-white/5 rounded p-1">
-                <span className="text-zinc-400">Warehouse B</span>
-                <div className="text-white font-bold">890 Units</div>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {item.visualType === "dashboard" && (
-          <div className="space-y-1.5">
-            <div className="flex justify-between text-[10px] text-zinc-300 font-semibold">
-              <span>Executive Telemetry</span>
-              <span className="text-purple-400 font-mono text-[9px]">+38% YoY</span>
-            </div>
-            <div className="h-8 bg-gradient-to-r from-purple-950/60 via-indigo-950/60 to-black rounded border border-purple-500/30 p-1 flex items-end justify-between gap-1">
-              <div className="w-1/6 bg-purple-500/40 h-2 rounded-t" />
-              <div className="w-1/6 bg-purple-500/60 h-4 rounded-t" />
-              <div className="w-1/6 bg-purple-500/80 h-3 rounded-t" />
-              <div className="w-1/6 bg-purple-400 h-6 rounded-t" />
-              <div className="w-1/6 bg-purple-500 h-5 rounded-t" />
-              <div className="w-1/6 bg-purple-300 h-7 rounded-t shadow-md shadow-purple-500/50" />
-            </div>
-          </div>
-        )}
-
-        {item.visualType === "custom" && (
-          <div className="space-y-1.5">
-            <div className="flex justify-between items-center text-[10px] text-purple-300 font-mono">
-              <span>Bespoke Microservices</span>
-              <span className="text-emerald-400 text-[8px]">API 200 OK</span>
-            </div>
-            <div className="bg-black/60 rounded border border-white/10 p-1.5 text-[8px] font-mono text-zinc-300">
-              <code>POST /api/v1/engine {"{ status: 'active' }"}</code>
             </div>
           </div>
         )}
       </div>
 
-      {/* Card Visual Bottom Glow line */}
-      <div className="h-0.5 w-full bg-gradient-to-r from-transparent via-purple-500/50 to-transparent rounded-full" />
+      {/* Card Visual Bottom Glow Line */}
+      <div className="h-0.5 w-full bg-gradient-to-r from-transparent via-purple-500/60 to-transparent rounded-full mt-2" />
     </div>
   );
 }
 
-export function WhatWeBuild() {
-  return (
-    <section id="what-we-build" className="py-24 border-b border-white/5 bg-[#09090b]">
-      <div className="mx-auto max-w-7xl px-6 lg:px-12">
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-          <div className="inline-flex items-center gap-2 rounded-full border border-purple-500/30 bg-purple-950/40 px-3.5 py-1 text-xs text-purple-300 backdrop-blur-md">
-            <Sparkles className="h-3.5 w-3.5 text-purple-400" />
-            <span className="font-medium uppercase tracking-wider text-[11px]">Full-Cycle Digital Solutions</span>
-          </div>
+interface WhatWeBuildProps {
+  isEmbedded?: boolean;
+}
 
-          <h2 className="font-heading text-3xl sm:text-5xl font-bold text-white tracking-tight">
-            What We Build
-          </h2>
+export function WhatWeBuild({ isEmbedded = false }: WhatWeBuildProps) {
+  const { openModal } = useContactModal();
 
-          <p className="text-xs sm:text-base text-zinc-400 font-light leading-relaxed">
-            From high-converting corporate websites to complex enterprise ERP systems and SaaS products, we engineer end-to-end software designed to accelerate business growth.
-          </p>
+  const content = (
+    <div className="mx-auto max-w-7xl px-6 lg:px-12">
+      {/* Section Header */}
+      <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
+        <div className="inline-flex items-center gap-2 rounded-full border border-purple-500/30 bg-purple-950/40 px-3.5 py-1 text-xs text-purple-300 backdrop-blur-md">
+          <Sparkles className="h-3.5 w-3.5 text-purple-400" />
+          <span className="font-medium uppercase tracking-wider text-[11px]">Real Creovix Products</span>
         </div>
 
-        {/* Carousel Container (Desktop: 3 cards, Tablet: 2 cards, Mobile: 1 card) */}
-        <SectionCarousel autoplayDelay={4500}>
-          {buildItems.map((item) => {
-            const IconComponent = item.icon;
-            return (
-              <div
-                key={item.id}
-                className="group relative h-full rounded-2xl border border-white/10 bg-[#111116] p-6 transition-all duration-300 hover:border-purple-500/50 hover:-translate-y-1.5 hover:shadow-2xl hover:shadow-purple-950/30 flex flex-col justify-between"
-              >
-                <div className="space-y-5">
-                  {/* Real Portfolio Preview Visual */}
-                  <CardVisualPreview item={item} />
+        <h2 className="font-heading text-3xl sm:text-5xl font-bold text-white tracking-tight">
+          What We Build
+        </h2>
 
-                  {/* Header Title & Icon */}
-                  <div className="flex items-start gap-3">
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-purple-950/50 border border-purple-500/30 text-purple-400 group-hover:bg-purple-600 group-hover:text-white transition-all duration-300">
-                      <IconComponent className="h-5 w-5" />
-                    </div>
-                    <div>
-                      <span className="text-[10px] font-mono uppercase tracking-wider text-purple-400 font-semibold">
-                        {item.category}
-                      </span>
-                      <h3 className="font-heading text-lg font-bold text-white group-hover:text-purple-300 transition-colors">
-                        {item.title}
-                      </h3>
-                    </div>
-                  </div>
-
-                  {/* Description */}
-                  <p className="text-xs sm:text-sm text-zinc-400 font-light leading-relaxed">
-                    {item.description}
-                  </p>
-                </div>
-
-                {/* Card Action Footer */}
-                <div className="pt-6 mt-6 border-t border-white/5 flex items-center justify-between">
-                  <a
-                    href="#contact"
-                    className="inline-flex items-center gap-2 rounded-xl bg-purple-950/60 border border-purple-500/30 px-4 py-2 text-xs font-semibold text-purple-200 group-hover:bg-purple-600 group-hover:text-white group-hover:border-purple-600 transition-all duration-300"
-                  >
-                    <span>Learn More</span>
-                    <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-1 transition-transform" />
-                  </a>
-
-                  <span className="text-[10px] font-mono text-zinc-500 group-hover:text-purple-400/80 transition-colors">
-                    Creovix Stack
-                  </span>
-                </div>
-              </div>
-            );
-          })}
-        </SectionCarousel>
+        <p className="text-xs sm:text-base text-zinc-400 font-light leading-relaxed">
+          We engineer tailored business websites, custom CRM software, and enterprise operating systems that power real growth.
+        </p>
       </div>
+
+      {/* Carousel Container */}
+      <SectionCarousel autoplayDelay={5000}>
+        {buildItems.map((item) => {
+          const IconComponent = item.icon;
+          return (
+            <div
+              key={item.id}
+              className="group relative h-full rounded-2xl border border-white/10 bg-[#111116] p-6 transition-all duration-300 hover:border-purple-500/60 hover:-translate-y-2 hover:shadow-2xl hover:shadow-purple-950/50 flex flex-col justify-between overflow-hidden"
+            >
+              {/* Border Glow Gradient Overlay on Hover */}
+              <div className="absolute -inset-px rounded-2xl bg-gradient-to-b from-purple-500/20 via-transparent to-purple-600/20 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
+
+              <div className="space-y-5 relative z-10">
+                {/* Real Portfolio Preview Visual with Hover Zoom */}
+                <CardVisualPreview item={item} />
+
+                {/* Header Title & Icon */}
+                <div className="flex items-start gap-3">
+                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-purple-950/50 border border-purple-500/30 text-purple-400 group-hover:bg-purple-600 group-hover:text-white transition-all duration-300 shadow-md">
+                    <IconComponent className="h-5.5 w-5.5" />
+                  </div>
+                  <div>
+                    <span className="text-[10px] font-mono uppercase tracking-wider text-purple-400 font-semibold">
+                      {item.category}
+                    </span>
+                    <h3 className="font-heading text-lg font-bold text-white group-hover:text-purple-300 transition-colors">
+                      {item.title}
+                    </h3>
+                  </div>
+                </div>
+
+                {/* Description */}
+                <p className="text-xs sm:text-sm text-zinc-400 font-light leading-relaxed">
+                  {item.description}
+                </p>
+              </div>
+
+              {/* Card Action Footer */}
+              <div className="pt-6 mt-6 border-t border-white/5 flex items-center justify-between relative z-10">
+                <button
+                  onClick={() => openModal(`Learn More - ${item.title}`)}
+                  className="inline-flex items-center gap-2 rounded-xl bg-purple-950/60 border border-purple-500/30 px-4 py-2 text-xs font-semibold text-purple-200 group-hover:bg-purple-600 group-hover:text-white group-hover:border-purple-600 transition-all duration-300 shadow-sm"
+                >
+                  <span>Learn More</span>
+                  <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-1 transition-transform" />
+                </button>
+
+                <span className="text-[10px] font-mono text-zinc-500 group-hover:text-purple-400/80 transition-colors">
+                  Creovix Product
+                </span>
+              </div>
+            </div>
+          );
+        })}
+      </SectionCarousel>
+    </div>
+  );
+
+  if (isEmbedded) {
+    return content;
+  }
+
+  return (
+    <section id="what-we-build" className="py-24 border-b border-white/5 bg-[#09090b]">
+      {content}
     </section>
   );
 }
