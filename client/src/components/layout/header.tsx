@@ -4,12 +4,10 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { Menu, X, Instagram, ArrowRight } from "lucide-react";
 import { WhatsAppIcon } from "@/components/ui/whatsapp-icon";
-import { useContactModal } from "@/components/ui/contact-modal";
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const { openModal } = useContactModal();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -96,13 +94,13 @@ export function Header() {
             <Instagram className="h-4 w-4" />
           </a>
 
-          <button
-            onClick={() => openModal("Book Discovery Call")}
-            className="inline-flex items-center gap-2 rounded-full bg-purple-600 px-5 py-2 text-xs font-semibold text-white hover:bg-purple-500 transition-all shadow-md shadow-purple-900/40 hover:shadow-purple-700/50"
+          <a
+            href="#contact"
+            className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-purple-600 to-indigo-600 px-5 py-2 text-xs font-bold text-white hover:from-purple-500 hover:to-indigo-500 transition-all shadow-lg shadow-purple-950/60 hover:shadow-purple-700/50 hover:scale-105"
           >
-            <span>Get Free Consultation</span>
+            <span>Book a Call</span>
             <ArrowRight className="h-3.5 w-3.5" />
-          </button>
+          </a>
         </div>
 
         {/* Mobile Hamburger Toggle */}
@@ -152,15 +150,14 @@ export function Header() {
               <span>@creovix.stack</span>
             </a>
 
-            <button
-              onClick={() => {
-                setIsOpen(false);
-                openModal("Get Free Consultation");
-              }}
-              className="inline-flex items-center justify-center gap-2 rounded-lg bg-purple-600 px-4 py-2.5 text-xs font-semibold text-white hover:bg-purple-500 transition-all"
+            <a
+              href="#contact"
+              onClick={() => setIsOpen(false)}
+              className="inline-flex items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-purple-600 to-indigo-600 px-4 py-2.5 text-xs font-bold text-white hover:from-purple-500 hover:to-indigo-500 transition-all shadow-md shadow-purple-900/50"
             >
-              Get Free Consultation
-            </button>
+              <span>Book a Call</span>
+              <ArrowRight className="h-3.5 w-3.5" />
+            </a>
           </div>
         </div>
       )}

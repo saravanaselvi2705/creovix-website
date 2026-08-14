@@ -11,8 +11,9 @@ import { StackPilotSection } from "@/components/sections/stackpilot-section";
 import { TechStackSection } from "@/components/sections/tech-stack-section";
 import { IndustriesSection } from "@/components/sections/industries-section";
 import { WhyBusinessesChooseUs } from "@/components/sections/why-businesses-choose-us";
-import { DevelopmentProcess } from "@/components/sections/development-process";
+import { AgileProcess } from "@/components/sections/agile-process";
 // Preserved sections (commented out for future re-enabling per prompt requirements)
+// import { DevelopmentProcess } from "@/components/sections/development-process";
 // import { SuccessStories } from "@/components/sections/success-stories";
 // import { TestimonialsSection } from "@/components/sections/testimonials-section";
 import { ContactSection } from "@/components/sections/contact-section";
@@ -82,8 +83,8 @@ export default function Home() {
         {/* 6. WHY CHOOSE CREOVIX STACK (Horizontal Feature Slider) */}
         <WhyBusinessesChooseUs />
 
-        {/* 7. DEVELOPMENT PROCESS (Connected Interactive Workflow - No Carousel) */}
-        <DevelopmentProcess />
+        {/* 7. AGILE PROCESS (4-Step Delivery Framework) */}
+        <AgileProcess />
 
         {/* 
           HIDDEN / PRESERVED SECTIONS (Per Requirements 2 & 3: Code kept available for future use)

@@ -7,13 +7,11 @@ import { ArrowRight } from "lucide-react";
 
 import { HeroBackground } from "./HeroBackground";
 import { HeroLogos } from "./HeroLogos";
-import { useContactModal } from "@/components/ui/contact-modal";
 
 export function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
-  const { openModal } = useContactModal();
 
   // Mouse move handler for smooth ambient light parallax
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -96,18 +94,18 @@ export function Hero() {
             variants={itemFadeUp}
             className="font-heading text-3.5xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-[1.12] max-w-5xl mx-auto"
           >
-            Transforming Business Ideas into{" "}
+            Turn Software Investment into{" "}
             <span className="bg-gradient-to-r from-purple-400 via-purple-300 to-indigo-300 bg-clip-text text-transparent drop-shadow-sm">
-              Powerful Digital Solutions
+              Measurable Business ROI
             </span>
           </motion.h1>
 
-          {/* Supporting Text */}
+          {/* Supporting Text focusing on ROI & lead generation */}
           <motion.p
             variants={itemFadeUp}
             className="text-sm sm:text-base md:text-lg text-zinc-300/90 max-w-3xl mx-auto font-light leading-relaxed px-2"
           >
-            We build modern websites, SaaS platforms, CRM systems, and custom web applications that turn business ideas into scalable digital products.
+            We build high-converting web applications, automated workflow systems, and enterprise CRMs that eliminate manual data entry, reduce billable hours, and accelerate predictable lead generation.
           </motion.p>
 
           {/* CTA Buttons */}
@@ -116,19 +114,19 @@ export function Hero() {
             className="pt-4 flex flex-wrap justify-center items-center gap-4"
           >
             <a
-              href="#featured-projects"
-              className="group relative inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-purple-600 to-indigo-600 px-8 py-3.5 text-xs sm:text-sm font-semibold text-white transition-all duration-300 shadow-xl shadow-purple-950/60 hover:shadow-purple-700/60 hover:scale-105"
+              href="#contact"
+              className="group relative inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-purple-600 via-purple-500 to-indigo-600 px-8 py-3.5 text-xs sm:text-sm font-bold text-white transition-all duration-300 shadow-xl shadow-purple-950/60 hover:shadow-purple-700/60 hover:scale-105"
             >
-              <span>Explore Our Projects</span>
+              <span>Book a Free Discovery Call</span>
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </a>
 
-            <button
-              onClick={() => openModal("Start Your Project")}
+            <a
+              href="#featured-projects"
               className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-[#121218]/80 px-7 py-3.5 text-xs sm:text-sm font-semibold text-zinc-200 transition-all duration-300 hover:border-purple-500/40 hover:bg-[#181824] hover:text-white"
             >
-              <span>Start Your Project</span>
-            </button>
+              <span>Explore Our Projects</span>
+            </a>
           </motion.div>
         </motion.div>
 
