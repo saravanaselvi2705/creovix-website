@@ -153,7 +153,7 @@ export function ContactSection() {
             </div>
           </div>
 
-          {/* Right Column: Calendly Embed Widget Container */}
+          {/* Right Column: Interactive Discovery Call Booking Form */}
           <div className="lg:col-span-7">
             <div className="rounded-3xl border border-white/10 bg-[#111116] p-6 sm:p-8 shadow-2xl space-y-6">
               {/* Widget Header */}
@@ -171,54 +171,165 @@ export function ContactSection() {
                 </div>
 
                 <a
-                  href="https://calendly.com/creovixstack"
+                  href="https://wa.me/918075995734?text=Hi%20Creovix%20Stack%20Team%2C%20I%20would%20like%20to%20schedule%20a%20discovery%20call%20for%20a%20project."
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 rounded-xl border border-white/15 bg-[#171720] px-4 py-2 text-xs font-semibold text-zinc-200 hover:text-white hover:border-purple-500/40 transition-colors self-start sm:self-auto shrink-0"
+                  className="inline-flex items-center gap-2 rounded-xl border border-emerald-500/30 bg-emerald-950/30 px-4 py-2 text-xs font-semibold text-emerald-300 hover:text-white hover:border-emerald-500/60 hover:bg-emerald-900/50 transition-all self-start sm:self-auto shrink-0"
                 >
-                  <span>Open in Full Page</span>
-                  <ExternalLink className="h-3.5 w-3.5 text-purple-400" />
+                  <WhatsAppIcon className="h-4 w-4 text-emerald-400" />
+                  <span>Instant WhatsApp Chat</span>
                 </a>
               </div>
 
-              {/* Calendly Inline Widget */}
-              <div className="relative w-full min-h-[620px] rounded-2xl overflow-hidden border border-white/10 bg-[#09090b]">
-                {/* Calendly Widget Script Integration */}
-                <Script
-                  src="https://assets.calendly.com/assets/external/widget.js"
-                  strategy="lazyOnload"
-                />
-
-                {/* Inline Calendly Widget Embed */}
-                <div
-                  className="calendly-inline-widget w-full h-[620px]"
-                  data-url="https://calendly.com/creovixstack/discovery-call?hide_landing_page_details=1&hide_gdpr_banner=1&background_color=09090b&text_color=ffffff&primary_color=a855f7"
-                  style={{ minWidth: "320px", height: "620px" }}
-                >
-                  {/* Fallback iframe while script initializes */}
-                  <iframe
-                    src="https://calendly.com/creovixstack/discovery-call?embed_domain=creovixstack.com&embed_type=Inline&background_color=09090b&text_color=ffffff&primary_color=a855f7"
-                    width="100%"
-                    height="620"
-                    frameBorder="0"
-                    title="Schedule a Discovery Call with Creovix Stack"
-                    className="w-full h-[620px] rounded-2xl"
-                  />
-                </div>
-              </div>
+              <BookingForm />
 
               {/* Widget Footer */}
               <div className="flex flex-wrap items-center justify-between gap-3 text-xs text-zinc-400 pt-2 border-t border-white/5">
                 <span className="flex items-center gap-1.5">
                   <ShieldCheck className="h-4 w-4 text-emerald-400" />
-                  Instant Google / Outlook calendar invite
+                  NDA & Confidentiality Guaranteed
                 </span>
-                <span className="text-zinc-500">Timezone auto-detected</span>
+                <span className="text-zinc-500">24-Hour Technical Proposal SLA</span>
               </div>
             </div>
           </div>
         </div>
       </div>
     </section>
+  );
+}
+
+function BookingForm() {
+  const [submitted, setSubmitted] = React.useState(false);
+  const [formData, setFormData] = React.useState({
+    name: "",
+    email: "",
+    phone: "",
+    service: "Web Development & SaaS",
+    message: "",
+  });
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setSubmitted(true);
+    
+    // Construct prefilled WhatsApp / Mailto link as backup dispatch
+    const text = encodeURIComponent(
+      `Hello Creovix Stack Team,\n\nName: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nService: ${formData.service}\nDetails: ${formData.message}`
+    );
+    window.open(`https://wa.me/918075995734?text=${text}`, "_blank");
+  };
+
+  if (submitted) {
+    return (
+      <div className="py-12 px-6 rounded-2xl border border-purple-500/30 bg-purple-950/20 text-center space-y-4 animate-fadeIn">
+        <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-emerald-950/60 border border-emerald-500/40 text-emerald-400">
+          <CheckCircle2 className="h-8 w-8" />
+        </div>
+        <h4 className="text-xl font-bold text-white">Discovery Call Request Sent!</h4>
+        <p className="text-sm text-zinc-300 max-w-md mx-auto leading-relaxed">
+          Thank you <span className="text-purple-300 font-semibold">{formData.name}</span>. Our technical founders will review your requirements and get back to you within 2-4 hours.
+        </p>
+        <button
+          onClick={() => setSubmitted(false)}
+          className="mt-4 rounded-xl border border-white/10 bg-[#171720] px-5 py-2.5 text-xs font-semibold text-zinc-300 hover:text-white hover:border-purple-500/40 transition-colors"
+        >
+          Submit Another Request
+        </button>
+      </div>
+    );
+  }
+
+  return (
+    <form onSubmit={handleSubmit} className="space-y-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {/* Name Input */}
+        <div className="space-y-1.5">
+          <label className="text-xs font-semibold text-zinc-300">
+            Full Name <span className="text-purple-400">*</span>
+          </label>
+          <input
+            type="text"
+            required
+            placeholder="John Doe"
+            value={formData.name}
+            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+            className="w-full rounded-xl border border-white/10 bg-[#09090b] px-4 py-3 text-sm text-white placeholder-zinc-500 focus:border-purple-500 focus:outline-none focus:ring-1 focus:ring-purple-500 transition-colors"
+          />
+        </div>
+
+        {/* Email Input */}
+        <div className="space-y-1.5">
+          <label className="text-xs font-semibold text-zinc-300">
+            Work Email <span className="text-purple-400">*</span>
+          </label>
+          <input
+            type="email"
+            required
+            placeholder="john@company.com"
+            value={formData.email}
+            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+            className="w-full rounded-xl border border-white/10 bg-[#09090b] px-4 py-3 text-sm text-white placeholder-zinc-500 focus:border-purple-500 focus:outline-none focus:ring-1 focus:ring-purple-500 transition-colors"
+          />
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {/* Phone Input */}
+        <div className="space-y-1.5">
+          <label className="text-xs font-semibold text-zinc-300">
+            Phone / WhatsApp <span className="text-purple-400">*</span>
+          </label>
+          <input
+            type="tel"
+            required
+            placeholder="+1 (555) 000-0000"
+            value={formData.phone}
+            onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+            className="w-full rounded-xl border border-white/10 bg-[#09090b] px-4 py-3 text-sm text-white placeholder-zinc-500 focus:border-purple-500 focus:outline-none focus:ring-1 focus:ring-purple-500 transition-colors"
+          />
+        </div>
+
+        {/* Service Selector */}
+        <div className="space-y-1.5">
+          <label className="text-xs font-semibold text-zinc-300">
+            Project Scope <span className="text-purple-400">*</span>
+          </label>
+          <select
+            value={formData.service}
+            onChange={(e) => setFormData({ ...formData, service: e.target.value })}
+            className="w-full rounded-xl border border-white/10 bg-[#09090b] px-4 py-3 text-sm text-white focus:border-purple-500 focus:outline-none focus:ring-1 focus:ring-purple-500 transition-colors"
+          >
+            <option value="Web Development & SaaS">Web Development & SaaS</option>
+            <option value="Application Redesign">Application Redesign</option>
+            <option value="Software Testing & QA">Software Testing & QA</option>
+            <option value="Custom Enterprise Solution">Custom Enterprise Solution</option>
+          </select>
+        </div>
+      </div>
+
+      {/* Message Textarea */}
+      <div className="space-y-1.5">
+        <label className="text-xs font-semibold text-zinc-300">
+          Project Details / Goals
+        </label>
+        <textarea
+          rows={3}
+          placeholder="Briefly describe your software goals, target timeline, or tech stack requirements..."
+          value={formData.message}
+          onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+          className="w-full rounded-xl border border-white/10 bg-[#09090b] px-4 py-3 text-sm text-white placeholder-zinc-500 focus:border-purple-500 focus:outline-none focus:ring-1 focus:ring-purple-500 transition-colors resize-none"
+        />
+      </div>
+
+      {/* Submit Button */}
+      <button
+        type="submit"
+        className="w-full rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 py-3.5 px-6 text-sm font-bold text-white shadow-lg shadow-purple-600/25 hover:from-purple-500 hover:to-indigo-500 hover:shadow-purple-600/40 transition-all flex items-center justify-center gap-2 group"
+      >
+        <span>Request Discovery Call</span>
+        <Sparkles className="h-4 w-4 text-purple-200 group-hover:scale-110 transition-transform" />
+      </button>
+    </form>
   );
 }
