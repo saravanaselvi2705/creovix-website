@@ -12,6 +12,7 @@ import { TechStackSection } from "@/components/sections/tech-stack-section";
 import { IndustriesSection } from "@/components/sections/industries-section";
 import { WhyBusinessesChooseUs } from "@/components/sections/why-businesses-choose-us";
 import { AgileProcess } from "@/components/sections/agile-process";
+import { ResultsMetrics } from "@/components/sections/results-metrics";
 // Preserved sections (commented out for future re-enabling per prompt requirements)
 // import { DevelopmentProcess } from "@/components/sections/development-process";
 // import { SuccessStories } from "@/components/sections/success-stories";
@@ -86,13 +87,16 @@ export default function Home() {
         {/* 7. AGILE PROCESS (4-Step Delivery Framework) */}
         <AgileProcess />
 
+        {/* 8. RESULTS & METRICS (6-Card Outcome Stats) */}
+        <ResultsMetrics />
+
         {/* 
           HIDDEN / PRESERVED SECTIONS (Per Requirements 2 & 3: Code kept available for future use)
           <SuccessStories />
           <TestimonialsSection />
         */}
 
-        {/* 8. FAQ SECTION */}
+        {/* 9. FAQ SECTION */}
         <section id="faq" className="py-24 border-b border-white/5 bg-[#09090b]">
           <div className="mx-auto max-w-4xl px-6 lg:px-12">
             <div className="text-center max-w-2xl mx-auto mb-16 space-y-4">
