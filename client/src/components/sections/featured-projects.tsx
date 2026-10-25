@@ -31,7 +31,6 @@ const featuredCardData: ProjectCardData[] = [
       "Delivered a bespoke digital invitation with **interactive wax-seal envelope opener**, instant **WhatsApp & social sharing**, and **mobile-responsive venue navigation**.",
     liveUrl: "https://rahulashika.vercel.app/",
     liveButtonText: "View Live Website",
-    imageUrl: "/projects/shivashika-rahul.png",
   },
   {
     title: "AuctionHub",
@@ -165,7 +164,7 @@ export function FeaturedProjects({ isEmbedded = false }: FeaturedProjectsProps) 
 
       {/* ── Featured Cards Grid ── */}
       <div className="w-full max-w-7xl mx-auto pb-4 relative">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
           {featuredCardData.map((card, idx) => (
             <ProjectCard key={idx} project={card} className="h-full" />
           ))}

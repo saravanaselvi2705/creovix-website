@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import Image from "next/image";
 import { ExternalLink, Github } from "lucide-react";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
@@ -71,9 +70,9 @@ export function ProjectCard({ project, className = "" }: ProjectCardProps) {
     <article
       className={[
         // Base
-        "group relative flex flex-col font-sans",
-        // Spacing
-        "p-8 lg:p-10",
+        "group relative flex flex-col justify-between font-sans",
+        // Spacing - responsive comfortable padding
+        "p-6 sm:p-8",
         // Border & background – dark-first (site is dark-only)
         "bg-[#111116] border border-white/10 rounded-2xl",
         // Hover elevation
@@ -85,84 +84,71 @@ export function ProjectCard({ project, className = "" }: ProjectCardProps) {
       {/* ── Subtle glow on hover ── */}
       <div className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br from-purple-600/5 via-transparent to-blue-600/5" />
 
-      {/* ── Optional Authentic Thumbnail ── */}
-      {project.imageUrl && (
-        <div className="relative aspect-video w-full overflow-hidden rounded-xl bg-purple-950/40 border border-white/10 mb-6 group-hover:border-purple-500/40 transition-colors">
-          <Image
-            src={project.imageUrl}
-            alt={`Screenshot of ${project.title}`}
-            fill
-            sizes="(max-w-7xl) 100vw, (max-w-1200px) 50vw, 33vw"
-            className="object-cover transition-transform duration-500 group-hover:scale-105"
-          />
-          {project.status && (
-            <div className="absolute top-3 left-3 bg-emerald-950/90 border border-emerald-500/40 text-emerald-300 px-2.5 py-0.5 text-[9px] font-bold uppercase tracking-wider rounded-full backdrop-blur-sm shadow-sm">
-              {project.status}
-            </div>
-          )}
-        </div>
-      )}
+      {/* ── Top Section (Header + Tech) ── */}
+      <div>
+        {/* ══════════════════════════════════════
+            1. HEADER (Badges on top, Title, Description)
+        ══════════════════════════════════════ */}
+        <header className="space-y-3 mb-6">
+          {/* Top Badges Row */}
+          <div className="flex items-center justify-between gap-2 flex-wrap">
+            <span
+              className={[
+                "inline-block px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider",
+                theme.pill,
+              ].join(" ")}
+            >
+              {project.type}
+            </span>
+            {project.status && (
+              <span className="inline-block px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-emerald-950/80 border border-emerald-500/40 text-emerald-300">
+                {project.status}
+              </span>
+            )}
+          </div>
 
-      {/* ══════════════════════════════════════
-          1. HEADER
-      ══════════════════════════════════════ */}
-      <header className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-6">
-        {/* Left – title + description */}
-        <div className="flex-1 min-w-0 space-y-2">
-          <h3 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-white leading-tight">
+          {/* Title */}
+          <h3 className="text-xl sm:text-2xl font-extrabold tracking-tight text-white leading-snug">
             {project.title}
           </h3>
-          <p className="text-sm leading-relaxed text-zinc-400 font-light max-w-xl">
+
+          {/* Description */}
+          <p className="text-xs sm:text-sm leading-relaxed text-zinc-400 font-light">
             {project.description}
           </p>
-        </div>
+        </header>
 
-        {/* Right – type badge */}
-        <div className="shrink-0 sm:ml-4 mt-0.5">
-          <span
-            className={[
-              "inline-block px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider whitespace-nowrap",
-              theme.pill,
-            ].join(" ")}
-          >
-            {project.type}
-          </span>
+        {/* ══════════════════════════════════════
+            2. TECH STACK
+        ══════════════════════════════════════ */}
+        <div className="flex flex-wrap gap-2 mb-6">
+          {project.tech.map((tag, idx) => (
+            <span
+              key={idx}
+              className="px-2.5 py-1 text-[11px] font-medium tracking-wide rounded-md bg-white/5 text-zinc-300 border border-white/8"
+            >
+              {tag}
+            </span>
+          ))}
         </div>
-      </header>
-
-      {/* ══════════════════════════════════════
-          2. TECH STACK
-      ══════════════════════════════════════ */}
-      <div className="flex flex-wrap gap-2 mb-7">
-        {project.tech.map((tag, idx) => (
-          <span
-            key={idx}
-            className="px-2.5 py-1 text-[11px] font-medium tracking-wide rounded-md bg-white/5 text-zinc-300 border border-white/8"
-          >
-            {tag}
-          </span>
-        ))}
       </div>
 
       {/* ══════════════════════════════════════
           3. BUSINESS IMPACT CALLOUT
       ══════════════════════════════════════ */}
-      <div className="mb-7 pl-4 border-l-2 border-blue-500 bg-blue-900/10 rounded-r-xl py-3.5 pr-4">
+      <div className="my-6 pl-4 border-l-2 border-blue-500 bg-blue-900/10 rounded-r-xl py-3.5 pr-4 flex-1">
         <p className="text-[10px] font-bold uppercase tracking-widest text-blue-400 mb-2">
           Business Impact &amp; ROI
         </p>
-        <p className="text-sm text-zinc-300 font-light leading-relaxed">
+        <p className="text-xs sm:text-sm text-zinc-300 font-light leading-relaxed">
           {renderImpactText(project.businessImpact)}
         </p>
       </div>
 
-      {/* Spacer pushes footer to the bottom in flex columns */}
-      <div className="flex-1" />
-
       {/* ══════════════════════════════════════
           4. FOOTER – action buttons
       ══════════════════════════════════════ */}
-      <footer className="flex items-center gap-3 pt-6 border-t border-white/8">
+      <footer className="flex items-center gap-3 pt-6 border-t border-white/8 mt-auto">
         {/* Primary – Live Demo / View Live Website */}
         {project.liveUrl && (
           <a
