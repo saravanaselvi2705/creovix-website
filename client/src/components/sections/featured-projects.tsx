@@ -20,7 +20,7 @@ const featuredCardData: ProjectCardData[] = [
     githubUrl: "https://github.com/saravanaselvi2705/stackpilot-ai",
   },
   {
-    title: "Shivashika & Rahul",
+    title: "Digital Wedding Invitation Card",
     type: "Wedding Invitation Website",
     typeColor: "purple",
     status: "Completed",

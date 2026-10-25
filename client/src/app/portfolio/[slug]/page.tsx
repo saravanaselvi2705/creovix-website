@@ -131,7 +131,7 @@ const projectsMap: Record<string, ProjectData> = {
     },
   },
   "shivashika-rahul-wedding": {
-    title: "Shivashika & Rahul: Wedding Invitation Website",
+    title: "Digital Wedding Invitation Card: Wedding Invitation Website",
     category: "Personalized Event Websites",
     duration: "Completed",
     metric: "Completed",
@@ -148,7 +148,7 @@ const projectsMap: Record<string, ProjectData> = {
     ],
     clientTestimonial: {
       quote: "Our wedding invitation website was absolutely stunning! Our friends and family loved opening the digital invitation and having all the venue details right on their phones.",
-      author: "Shivashika & Rahul",
+      author: "Digital Wedding Invitation Card",
       role: "Bride & Groom",
     },
   },

@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 
 const projectsList = [
   {
-    title: "Shivashika & Rahul",
+    title: "Digital Wedding Invitation Card",
     category: "event-websites",
     metric: "Completed",
     status: "Completed",
