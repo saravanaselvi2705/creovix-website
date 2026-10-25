@@ -1,13 +1,24 @@
 "use client";
 
 import React, { useState } from "react";
-import Link from "next/link";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { PortfolioCard } from "@/components/portfolio/portfolio-card";
 import { Button } from "@/components/ui/button";
 
 const projectsList = [
+  {
+    title: "Shivashika & Rahul",
+    category: "event-websites",
+    metric: "Completed",
+    status: "Completed",
+    tags: ["Wedding Invitation Website", "Mobile-First", "Interactive Invitation", "WhatsApp Sharing"],
+    slug: "shivashika-rahul-wedding",
+    imageUrl: "/projects/shivashika-rahul.png",
+    liveUrl: "https://rahulashika.vercel.app/",
+    description:
+      "A personalized digital wedding invitation website created to celebrate a special occasion and make the invitation easy to share with family and friends.",
+  },
   {
     title: "StackPilot: Enterprise Management Platform",
     category: "web-development",
@@ -52,6 +63,7 @@ const projectsList = [
 
 const categories = [
   { id: "all", label: "All Projects" },
+  { id: "event-websites", label: "Event Websites" },
   { id: "web-development", label: "Web Development" },
   { id: "redesign-modernization", label: "Modernization" },
   { id: "software-testing", label: "Software Testing" },
@@ -107,9 +119,12 @@ export default function PortfolioPage() {
                 key={idx}
                 title={project.title}
                 metric={project.metric}
+                status={project.status}
                 tags={project.tags}
                 slug={project.slug}
                 imageUrl={project.imageUrl}
+                liveUrl={project.liveUrl}
+                description={project.description}
               />
             ))}
           </div>

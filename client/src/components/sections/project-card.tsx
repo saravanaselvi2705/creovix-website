@@ -1,7 +1,8 @@
 "use client";
 
 import React from "react";
-import { ExternalLink, Github, TrendingUp } from "lucide-react";
+import Image from "next/image";
+import { ExternalLink, Github } from "lucide-react";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -14,6 +15,9 @@ export interface ProjectCardData {
   businessImpact: string; // Plain text – bold markers handled by component
   liveUrl?: string;
   githubUrl?: string;
+  imageUrl?: string;
+  status?: string;
+  liveButtonText?: string;
 }
 
 interface ProjectCardProps {
@@ -81,6 +85,24 @@ export function ProjectCard({ project, className = "" }: ProjectCardProps) {
       {/* ── Subtle glow on hover ── */}
       <div className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br from-purple-600/5 via-transparent to-blue-600/5" />
 
+      {/* ── Optional Authentic Thumbnail ── */}
+      {project.imageUrl && (
+        <div className="relative aspect-video w-full overflow-hidden rounded-xl bg-purple-950/40 border border-white/10 mb-6 group-hover:border-purple-500/40 transition-colors">
+          <Image
+            src={project.imageUrl}
+            alt={`Screenshot of ${project.title}`}
+            fill
+            sizes="(max-w-7xl) 100vw, (max-w-1200px) 50vw, 33vw"
+            className="object-cover transition-transform duration-500 group-hover:scale-105"
+          />
+          {project.status && (
+            <div className="absolute top-3 left-3 bg-emerald-950/90 border border-emerald-500/40 text-emerald-300 px-2.5 py-0.5 text-[9px] font-bold uppercase tracking-wider rounded-full backdrop-blur-sm shadow-sm">
+              {project.status}
+            </div>
+          )}
+        </div>
+      )}
+
       {/* ══════════════════════════════════════
           1. HEADER
       ══════════════════════════════════════ */}
@@ -141,7 +163,7 @@ export function ProjectCard({ project, className = "" }: ProjectCardProps) {
           4. FOOTER – action buttons
       ══════════════════════════════════════ */}
       <footer className="flex items-center gap-3 pt-6 border-t border-white/8">
-        {/* Primary – Live Demo */}
+        {/* Primary – Live Demo / View Live Website */}
         {project.liveUrl && (
           <a
             href={project.liveUrl}
@@ -155,7 +177,7 @@ export function ProjectCard({ project, className = "" }: ProjectCardProps) {
             ].join(" ")}
           >
             <ExternalLink className="w-3.5 h-3.5 shrink-0" />
-            <span>Live Demo</span>
+            <span>{project.liveButtonText || "Live Demo"}</span>
           </a>
         )}
 

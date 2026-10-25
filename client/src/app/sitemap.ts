@@ -13,6 +13,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/services/software-testing",
     "/services/seo",
     "/services/website-maintenance",
+    "/services/event-websites",
     "/portfolio",
     "/case-studies",
     "/process",

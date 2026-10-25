@@ -6,13 +6,10 @@ import {
   Code2,
   Cloud,
   Users,
-  Smartphone,
-  Bot,
-  Palette,
   Wrench,
-  Server,
   Zap,
   ArrowRight,
+  Heart,
 } from "lucide-react";
 import { SectionCarousel } from "@/components/ui/section-carousel";
 
@@ -24,6 +21,13 @@ export function ServicesSection() {
       description: "Custom ultra-fast Next.js & React business websites optimized for SEO, high performance, and conversions.",
       icon: Globe,
       cta: "Build Your Site",
+    },
+    {
+      id: "event-websites",
+      title: "Personalized Event Websites",
+      description: "Beautiful, personalized websites for weddings, engagements and special occasions, designed to make every celebration memorable and easy to share.",
+      icon: Heart,
+      cta: "Explore Event Sites",
     },
     {
       id: "custom-software",

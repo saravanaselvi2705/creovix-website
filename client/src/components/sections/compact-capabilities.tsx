@@ -1,11 +1,12 @@
 "use client";
 
 import React from "react";
-import { Sparkles, Globe, Cloud, Users, AppWindow, ShoppingBag, Bot } from "lucide-react";
+import { Sparkles, Globe, Cloud, Users, AppWindow, ShoppingBag, Bot, Heart } from "lucide-react";
 
 export function CompactCapabilities() {
   const capabilities = [
     { label: "Websites", icon: Globe },
+    { label: "Event Websites", icon: Heart },
     { label: "SaaS Platforms", icon: Cloud },
     { label: "CRM Systems", icon: Users },
     { label: "Business Applications", icon: AppWindow },

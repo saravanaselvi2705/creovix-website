@@ -2,7 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
-import { Code, ShieldCheck, Search, Settings, ArrowRight, Check, Layers, RefreshCw, Sparkles } from "lucide-react";
+import { Code, ShieldCheck, Search, Settings, ArrowRight, Check, Layers, RefreshCw, Sparkles, Heart } from "lucide-react";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { Button } from "@/components/ui/button";
@@ -104,6 +104,20 @@ const servicesList = [
       "24/7 Server Monitoring & Alerting",
     ],
     startingAt: "Monthly Support Tier",
+  },
+  {
+    title: "7. Personalized Event Websites",
+    slug: "event-websites",
+    description: "Beautiful, personalized websites for weddings, engagements and special occasions, designed to make every celebration memorable and easy to share.",
+    icon: Heart,
+    features: [
+      "Personalized wedding and engagement invitation websites",
+      "Couple names, photos and event details",
+      "Wedding date, time and venue information",
+      "Mobile-responsive design",
+      "Easy sharing through WhatsApp and social media",
+    ],
+    startingAt: "Event Package",
   },
 ];
 

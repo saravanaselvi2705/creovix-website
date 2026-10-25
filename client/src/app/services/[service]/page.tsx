@@ -5,7 +5,7 @@ import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { Button } from "@/components/ui/button";
 import { Accordion, AccordionItem } from "@/components/ui/accordion";
-import { Code, ShieldCheck, Search, Settings, ArrowRight, Check, ArrowLeft, RefreshCw, Layers, Sparkles } from "lucide-react";
+import { Code, ShieldCheck, Search, Settings, ArrowRight, Check, ArrowLeft, RefreshCw, Heart } from "lucide-react";
 
 interface ServiceData {
   title: string;
@@ -155,6 +155,38 @@ const serviceMap: Record<string, ServiceData> = {
     seoTitle: "Monthly Website Support & Maintenance Plans | Creovix Stack",
     seoDesc: "Security updates, backups, performance optimizations, bug fixes, and monthly developer support.",
   },
+  "event-websites": {
+    title: "7. Personalized Event Websites",
+    subtitle: "Personalized Digital Invitations for Weddings, Engagements & Celebrations",
+    tagline: "Beautiful, personalized websites for weddings, engagements and special occasions, designed to make every celebration memorable and easy to share.",
+    icon: Heart,
+    deliverables: [
+      "Personalized wedding and engagement invitation websites",
+      "Couple names, photos and event details",
+      "Wedding date, time and venue information",
+      "Mobile-responsive design",
+      "Easy sharing through WhatsApp and social media",
+      "Interactive digital countdown & ceremony schedule",
+      "Google Maps venue location directions",
+      "Digital RSVP tracking & guest confirmation",
+    ],
+    faqs: [
+      {
+        q: "What features are included in a personalized event website?",
+        a: "Every event website is tailored with the couple's names, photo highlights, event dates, ceremony timings, venue directions with maps, and mobile-friendly layouts for effortless reading.",
+      },
+      {
+        q: "How easily can guests view and share the website?",
+        a: "Guests open the link directly on their mobile phones without downloading any apps. You can share your link or custom QR code via WhatsApp, Instagram, or SMS with a single tap.",
+      },
+      {
+        q: "Can we include venue maps and RSVP tracking?",
+        a: "Yes, we integrate direct Google Maps navigation for your venues, ceremony timelines, and optional digital RSVP tracking.",
+      },
+    ],
+    seoTitle: "Personalized Event Websites & Digital Wedding Invitations | Creovix Stack",
+    seoDesc: "Beautiful, personalized websites for weddings, engagements and special occasions, designed to make every celebration memorable and easy to share.",
+  },
 };
 
 export async function generateStaticParams() {
@@ -164,6 +196,7 @@ export async function generateStaticParams() {
     { service: "software-testing" },
     { service: "seo" },
     { service: "website-maintenance" },
+    { service: "event-websites" },
   ];
 }
 

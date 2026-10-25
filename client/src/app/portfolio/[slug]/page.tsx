@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Check, ArrowRight, Sparkles } from "lucide-react";
+import { ArrowLeft, Check, ArrowRight, ExternalLink } from "lucide-react";
 
 interface ProjectData {
   title: string;
@@ -12,6 +12,7 @@ interface ProjectData {
   duration: string;
   metric: string;
   metricLabel: string;
+  liveUrl?: string;
   tags: string[];
   challenge: string;
   solution: string;
@@ -129,6 +130,28 @@ const projectsMap: Record<string, ProjectData> = {
       role: "VP Product, LedgerSync Fin",
     },
   },
+  "shivashika-rahul-wedding": {
+    title: "Shivashika & Rahul: Wedding Invitation Website",
+    category: "Personalized Event Websites",
+    duration: "Completed",
+    metric: "Completed",
+    metricLabel: "Delivered & Live",
+    liveUrl: "https://rahulashika.vercel.app/",
+    tags: ["Wedding Invitation Website", "Mobile-First", "Interactive Envelope", "WhatsApp Sharing", "RSVP Form"],
+    challenge: "The couple required an elegant, personalized digital wedding invitation website to celebrate their special occasion in Munnar, Kerala, giving guests an interactive invitation experience with immediate venue directions and WhatsApp sharing.",
+    solution: "We engineered a bespoke, mobile-first invitation website featuring an interactive wax-seal envelope opener, couple photo moments, venue details with map navigation, countdown timer, and one-click WhatsApp sharing.",
+    results: [
+      "100% mobile-responsive design tailored for modern smartphones",
+      "Interactive wax-seal envelope opening animation creating an engaging celebration experience",
+      "Effortless one-click sharing via WhatsApp and social platforms",
+      "Integrated venue directions, ceremony schedules, and digital RSVP form",
+    ],
+    clientTestimonial: {
+      quote: "Our wedding invitation website was absolutely stunning! Our friends and family loved opening the digital invitation and having all the venue details right on their phones.",
+      author: "Shivashika & Rahul",
+      role: "Bride & Groom",
+    },
+  },
 };
 
 export async function generateStaticParams() {
@@ -138,6 +161,7 @@ export async function generateStaticParams() {
     { slug: "ecoshop-headless-woocommerce" },
     { slug: "apexhealth-local-seo" },
     { slug: "ledgersync-automated-testing" },
+    { slug: "shivashika-rahul-wedding" },
   ];
 }
 
@@ -191,11 +215,24 @@ export default async function CaseStudyPage({ params }: Props) {
               <p className="text-3xl font-extrabold text-white mt-1">{project.metric}</p>
               <p className="text-xs text-gray-300 mt-0.5">{project.metricLabel}</p>
             </div>
-            <Link href="/contact">
-              <Button variant="primary" size="md" className="gap-2 font-semibold">
-                Start Your Project <ArrowRight className="h-4 w-4" />
-              </Button>
-            </Link>
+            <div className="flex flex-wrap items-center gap-3">
+              {project.liveUrl && (
+                <a
+                  href={project.liveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-xl bg-purple-950/80 border border-purple-500/40 px-4 py-2 text-xs font-bold text-purple-200 hover:bg-purple-600 hover:text-white transition-all shadow-sm"
+                >
+                  <ExternalLink className="h-3.5 w-3.5" />
+                  <span>View Live Website</span>
+                </a>
+              )}
+              <Link href="/contact">
+                <Button variant="primary" size="md" className="gap-2 font-semibold">
+                  Start Your Project <ArrowRight className="h-4 w-4" />
+                </Button>
+              </Link>
+            </div>
           </div>
 
           <div className="mt-16 grid grid-cols-1 md:grid-cols-12 gap-12">

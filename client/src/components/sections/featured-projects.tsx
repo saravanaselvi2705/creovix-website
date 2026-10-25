@@ -20,6 +20,20 @@ const featuredCardData: ProjectCardData[] = [
     githubUrl: "https://github.com/saravanaselvi2705/stackpilot-ai",
   },
   {
+    title: "Shivashika & Rahul",
+    type: "Wedding Invitation Website",
+    typeColor: "purple",
+    status: "Completed",
+    description:
+      "A personalized digital wedding invitation website created to celebrate a special occasion and make the invitation easy to share with family and friends.",
+    tech: ["React", "Tailwind CSS", "Interactive Invitation", "WhatsApp Sharing", "Mobile Responsive"],
+    businessImpact:
+      "Delivered a bespoke digital invitation with **interactive wax-seal envelope opener**, instant **WhatsApp & social sharing**, and **mobile-responsive venue navigation**.",
+    liveUrl: "https://rahulashika.vercel.app/",
+    liveButtonText: "View Live Website",
+    imageUrl: "/projects/shivashika-rahul.png",
+  },
+  {
     title: "AuctionHub",
     type: "Web Application",
     typeColor: "purple",
@@ -149,9 +163,9 @@ export function FeaturedProjects({ isEmbedded = false }: FeaturedProjectsProps) 
         </p>
       </div>
 
-      {/* ── Featured 3 Cards ── */}
+      {/* ── Featured Cards Grid ── */}
       <div className="w-full max-w-7xl mx-auto pb-4 relative">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-6 lg:gap-8">
           {featuredCardData.map((card, idx) => (
             <ProjectCard key={idx} project={card} className="h-full" />
           ))}
